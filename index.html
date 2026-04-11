@@ -53,7 +53,7 @@
         <div class="pdf-title">૨. પ્રવેશના નિયમો અને અન્ય વિગતો</div>
         <iframe src="https://docs.google.com/viewer?url=https://umakhodal1190-droid.github.io/school-admission/DETAILS.pdf&embedded=true" class="pdf-box"></iframe>
         <div class="pdf-title">૩. ફી માળખું (Fees Details)</div>
-        <iframe src="https://docs.google.com/viewer?url=https://umakhodal1190-droid.github.io/school-admission/Fees.pdf&embedded=true" class="pdf-box"></iframe>
+        <iframe src="https://docs.google.com/viewer?url=https://umakhodal1190-droid.github.io/school-admission/Fees.1.pdf&embedded=true" class="pdf-box"></iframe>
         <button id="applyFormBtn" class="btn-submit" style="max-width: 400px; margin-bottom: 40px;" onclick="showForm()">પ્રવેશ ફોર્મ ભરવા અહીં ક્લિક કરો</button>
     </div>
 
@@ -135,16 +135,11 @@
         const type = document.getElementById('uType').value;
         const casteSelect = document.getElementById('uCaste');
         casteSelect.innerHTML = "";
-        
         let options = ["Open", "OBC", "SC", "ST"];
-        if (type === "Chatralay") {
-            options = ["Open", "OBC"];
-        }
-        
+        if (type === "Chatralay") { options = ["Open", "OBC"]; }
         options.forEach(opt => {
             let el = document.createElement("option");
-            el.textContent = opt;
-            el.value = opt;
+            el.textContent = opt; el.value = opt;
             casteSelect.appendChild(el);
         });
     }
@@ -191,6 +186,12 @@
         const btn = document.getElementById('submitBtn');
         btn.disabled = true; btn.innerHTML = "સબમિટ થઈ રહ્યું છે... ⏳";
         
+        // ભારતીય સમય (IST) મુજબ ટાઇમસ્ટેમ્પ
+        const now = new Date();
+        const timestamp = now.toLocaleDateString('en-GB') + ' ' + now.toLocaleTimeString('en-US', { 
+            hour: '2-digit', minute: '2-digit', hour12: true 
+        });
+
         const data = {
             studentName: document.getElementById('uName').value,
             grade: document.getElementById('uGrade').value,
@@ -204,6 +205,7 @@
             address: document.getElementById('uAddress').value,
             dob: document.getElementById('uDob').value,
             photoData: document.getElementById('uPhotoData').value,
+            timestamp: timestamp, // Google Sheet માં મોકલવા માટે
             action: "insert"
         };
 
@@ -246,12 +248,10 @@
         doc.setFontSize(12); doc.text("Online Admission Receipt", 105, 28, {align:"center"});
         doc.setFontSize(14); doc.text("Receipt No: " + (data.receiptNo || "1001"), 105, 40, {align:"center"});
 
-        // Photo
         if (data.photoData) {
             try { doc.addImage(data.photoData, 'JPEG', 160, 50, 30, 38); doc.rect(160, 50, 30, 38); } catch (e) {}
         }
 
-        // Data Fields
         doc.setTextColor(0, 0, 0); doc.setFontSize(11);
         let y = 60;
         const info = [
@@ -274,16 +274,13 @@
             y += 9;
         });
 
-        // Sign Section
         y += 20;
         doc.setFont("helvetica", "bold");
         doc.text("____________________", 25, y);
         doc.text("Parent's Sign", 32, y + 7);
-        
         doc.text("____________________", 145, y);
         doc.text("Manager Sign", 152, y + 7);
 
-        // Note & Footer
         y += 25;
         doc.setDrawColor(212, 175, 55); doc.line(20, y, 190, y);
         doc.setTextColor(220, 38, 38); doc.setFontSize(10);
