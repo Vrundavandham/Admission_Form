@@ -19,6 +19,7 @@
         
         .helpline-container { border: 2px solid var(--golden); border-radius: 15px; padding: 15px; margin: 20px 0; background: #fffcf0; }
         .helpline-numbers { color: var(--primary); font-size: 22px; font-weight: 800; letter-spacing: 1px; }
+        .whatsapp-note { color: #25d366; font-weight: bold; font-size: 16px; margin-top: 5px; }
         
         .nondh-box { background: #fee2e2; border: 1px dashed var(--red); padding: 15px; border-radius: 10px; color: var(--red); font-weight: bold; margin: 20px 0; font-size: 15px; line-height: 1.5; }
         
@@ -48,11 +49,11 @@
 
     <div id="mainView" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
         <div class="pdf-title">૧. સંસ્થા પરિચય</div>
-        <iframe src="https://docs.google.com/viewer?url=https://umakhodal1190-droid.github.io/school-admission/VSGK.pdf&embedded=true" class="pdf-box"></iframe>
-        <div class="pdf-title">૨. પ્રવેશના નિયમો અને અન્ય વિગતો</div>
-        <iframe src="https://docs.google.com/viewer?url=https://umakhodal1190-droid.github.io/school-admission/DETAILS.pdf&embedded=true" class="pdf-box"></iframe>
-        <div class="pdf-title">૩. ફી માળખું (Fees Details)</div>
-        <iframe src="https://docs.google.com/viewer?url=https://umakhodal1190-droid.github.io/school-admission/Fees.pdf&embedded=true" class="pdf-box"></iframe>
+        <iframe src="https://docs.google.com/viewer?url=https://vrundavandhamkhirasara11-droid.github.io/school-admission/VSGK.pdf&embedded=true" class="pdf-box"></iframe>
+        <div class="pdf-title">૨.ગુરુકલ વિશેષતા</div>
+        <iframe src="https://docs.google.com/viewer?url=https://vrundavandhamkhirasara11-droid.github.io/school-admission/DETAILS.pdf&embedded=true" class="pdf-box"></iframe>
+        <div class="pdf-title">૩. ફી પત્રક (Fees Details)</div>
+        <iframe src="https://docs.google.com/viewer?url=https://vrundavandhamkhirasara11-droid.github.io/school-admission/Fees.pdf&embedded=true" class="pdf-box"></iframe>
         <button id="applyFormBtn" class="btn-submit" style="max-width: 400px; margin-bottom: 40px;" onclick="showForm()">પ્રવેશ ફોર્મ ભરવા અહીં ક્લિક કરો</button>
     </div>
 
@@ -64,6 +65,7 @@
             <div class="helpline-container">
                 <p style="margin:0; font-weight:bold; color: #444;">વધારે માહિતી માટે સંપર્ક કરો</p>
                 <div class="helpline-numbers">📞 81550 11811 / 11711</div>
+                <div class="whatsapp-note">📲 ઓનલાઇન ભરેલ ફોર્મની રસીદ ઉપર આપેલ મોબાઈલ નંબર પર વોટ્સએપ (WhatsApp) કરવી.</div>
             </div>
             <button class="btn-submit" style="background: var(--success);" onclick="generatePDF()">📄 રસીદ (Receipt) ડાઉનલોડ કરો</button>
             <div class="nondh-box">⚠️ ખાસ નોંધ: ઓનલાઇન ભરેલ પ્રવેશ ફોર્મની આ રીસીપ્ટની પ્રિન્ટ કાઢીને સ્કૂલ પર વેરીફીકેશન માટે સાથે લાવવી અનિવાર્ય છે.</div>
@@ -71,10 +73,10 @@
         </div>
     </div>
 
-    <div id="formHeader"><img src="https://umakhodal1190-droid.github.io/school-admission/header.jpeg" class="header-img"></div>
+    <div id="formHeader"><img src="https://vrundavandhamkhirasara11-droid.github.io/school-admission/header.jpeg" class="header-img"></div>
     <div id="formSection">
         <div class="p-content">
-            <h3 style="text-align:center; color:var(--primary); margin-top:0;">એડમિશન ફોર્મ</h3>
+            <h3 style="text-align:center; color:var(--primary); margin-top:0;">એડમિશન ફોર્મ-2026</h3>
             <form id="admissionForm">
                 <div class="grid">
                     <div style="text-align: center;">
@@ -241,7 +243,7 @@
         doc.setFillColor(14, 30, 96); doc.rect(0, 0, 210, 45, 'F');
         doc.setTextColor(255, 255, 255);
         doc.setFontSize(18); doc.text("VRUNDAVANDHAM KHIRASARA GURUKUL", 105, 18, {align:"center"});
-        doc.setFontSize(12); doc.text("Online Admission Receipt", 105, 28, {align:"center"});
+        doc.setFontSize(12); doc.text("Online Admission Receipt-2026", 105, 28, {align:"center"});
         doc.setFontSize(14); doc.text("Receipt No: " + (data.receiptNo || "1001"), 105, 40, {align:"center"});
 
         // Photo
@@ -279,7 +281,7 @@
         doc.text("Parent's Sign", 32, y + 7);
         
         doc.text("____________________", 145, y);
-        doc.text("Principal Sign", 152, y + 7);
+        doc.text("Manager Sign", 152, y + 7);
 
         // Note & Footer
         y += 25;
