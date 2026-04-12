@@ -105,7 +105,7 @@
                     <div class="field"><label>જ્ઞાતિ</label>
                         <select id="uCaste">
                             <option value="Open">Open</option>
-                            <option value="OBC">OBC</option>
+                            <option value="SEBC/OBC">SEBC/OBC</option>
                             <option value="SC">SC</option>
                             <option value="ST">ST</option>
                         </select>
@@ -116,6 +116,7 @@
                 <div class="section-bar">૨. વાલી વિગત</div>
                 <div class="grid">
                     <div class="field" style="grid-column: span 3;"><label>પિતાનું નામ</label><input type="text" id="uFather" required></div>
+                    <div class="field" style="grid-column: span 3;"><label>માતાનું નામ</label><input type="text" id="uMother" required></div>
                     <div class="field" style="grid-column: span 3;"><label>પિતાનો આધાર નંબર</label><input type="text" id="fAadhar" maxlength="12" required></div>
                     <div class="field" style="grid-column: span 3;"><label>મોબાઈલ નંબર</label><input type="tel" id="uMobile" maxlength="10" required></div>
                     <div class="field" style="grid-column: span 3;"><label>સરનામું</label><input type="text" id="uAddress" required></div>
@@ -127,7 +128,7 @@
     </div>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxFU6EVaCMH3C6ctt9IFJwAGT6-mh5nzyVU8He_QgPYe_jeT6OtjV8FCpDdBBHQ_iZR/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwxaZ3Xp-s09li7awo9L4eQCg0ly9E2-NtTDmqFdeBPAZScBHtfGyP--8wHwkFkxJKE/exec';
 
     window.onload = () => { 
         setTimeout(() => { document.getElementById('introOverlay').style.display = 'none'; }, 1000);
@@ -138,8 +139,8 @@
         const type = document.getElementById('uType').value;
         const casteSelect = document.getElementById('uCaste');
         casteSelect.innerHTML = "";
-        let options = ["Open", "OBC", "SC", "ST"];
-        if (type === "Chatralay") { options = ["Open", "OBC"]; }
+        let options = ["Open", "SEBC/OBC", "SC", "ST"];
+        if (type === "Chatralay") { options = ["Open", "SEBC/OBC"]; }
         options.forEach(opt => {
             let el = document.createElement("option");
             el.textContent = opt; el.value = opt;
@@ -190,7 +191,6 @@
         const btn = document.getElementById('submitBtn');
         btn.disabled = true; btn.innerHTML = "સબમિટ થઈ રહ્યું છે... ⏳";
         
-        // સાચો ટાઇમસ્ટેમ્પ (IST)
         const now = new Date();
         const timestamp = now.toLocaleDateString('en-GB') + ' ' + now.toLocaleTimeString('en-US', { 
             hour: '2-digit', minute: '2-digit', hour12: true 
@@ -204,6 +204,7 @@
             studentType: document.getElementById('uType').value,
             aadhar: document.getElementById('uAadhar').value,
             fatherName: document.getElementById('uFather').value,
+            motherName: document.getElementById('uMother').value,
             fatherAadhar: document.getElementById('fAadhar').value,
             mobile: document.getElementById('uMobile').value,
             address: document.getElementById('uAddress').value,
@@ -260,6 +261,7 @@
         const info = [
             ["Student Name:", data.studentName],
             ["Father Name:", data.fatherName],
+            ["Mother Name:", data.motherName],
             ["Grade:", data.grade],
             ["Mobile:", data.mobile],
             ["Gender:", data.gender],
@@ -277,7 +279,7 @@
             y += 9;
         });
 
-        y += 20;
+        y += 11;
         doc.setFont("helvetica", "bold");
         doc.text("____________________", 25, y);
         doc.text("Parent's Sign", 32, y + 7);
